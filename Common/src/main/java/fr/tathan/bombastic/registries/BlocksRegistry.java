@@ -1,6 +1,7 @@
 package fr.tathan.bombastic.registries;
 
 import fr.tathan.bombastic.Constants;
+import fr.tathan.bombastic.blocks.Detonator;
 import fr.tathan.bombastic.blocks.PowderBarrel;
 import net.minecraft.core.Registry;
 import net.minecraft.world.level.block.Block;
@@ -12,6 +13,10 @@ public class BlocksRegistry {
 
     public static RegistryObject<Block> POWDER_BARREL = BLOCKS.register("powder_barrel",
             () -> new PowderBarrel(Block.Properties.copy(Blocks.TERRACOTTA)));
+
+    public static RegistryObject<Block> DETONATOR = BLOCKS.register("detonator",
+            () -> new Detonator(Block.Properties.copy(Blocks.SPRUCE_BUTTON)));
+
 
     public static void init(){}
 

@@ -1,0 +1,70 @@
+{
+  "variants": {
+
+    "face=ceiling,facing=east": {
+      "model": "bombastic:block/detonator",
+      "x": 180,
+      "y": 270
+    },
+    "face=ceiling,facing=north": {
+      "model": "bombastic:block/detonator",
+      "x": 180,
+      "y": 180
+    },
+
+    "face=ceiling,facing=south": {
+      "model": "bombastic:block/detonator",
+      "x": 180
+    },
+
+    "face=ceiling,facing=west": {
+      "model": "bombastic:block/detonator",
+      "x": 180,
+      "y": 90
+    },
+
+    "face=floor,facing=east": {
+      "model": "bombastic:block/detonator",
+      "y": 90
+    },
+
+    "face=floor,facing=north": {
+      "model": "bombastic:block/detonator"
+    },
+
+    "face=floor,facing=south": {
+      "model": "bombastic:block/detonator",
+      "y": 180
+    },
+    "face=floor,facing=west": {
+      "model": "bombastic:block/detonator",
+      "y": 270
+    },
+    "face=wall,facing=east": {
+      "model": "bombastic:block/detonator",
+      "uvlock": true,
+      "x": 90,
+      "y": 90
+    },
+
+    "face=wall,facing=north": {
+      "model": "bombastic:block/detonator",
+      "uvlock": true,
+      "x": 90
+    },
+
+    "face=wall,facing=south": {
+      "model": "bombastic:block/detonator",
+      "uvlock": true,
+      "x": 90,
+      "y": 180
+    },
+
+    "face=wall,facing=west": {
+      "model": "bombastic:block/detonator",
+      "uvlock": true,
+      "x": 90,
+      "y": 270
+    }
+  }
+}

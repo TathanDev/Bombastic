@@ -20,6 +20,9 @@
     "entrypoints": {
       "main": [
         "fr.tathan.bombastic.Bombastic"
+      ],
+      "client": [
+        "fr.tathan.bombastic.BombasticClient"
       ]
     },
     "mixins": [
