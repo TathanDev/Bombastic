@@ -1,5 +1,6 @@
 package fr.tathan.bombastic;
 
+import fr.tathan.bombastic.entity.renderer.MinecartPowderBarrelRenderer;
 import fr.tathan.bombastic.entity.renderer.PowderBarrelRenderer;
 import fr.tathan.bombastic.registries.EntitiesRegistry;
 import net.minecraft.client.renderer.entity.EntityRenderers;
@@ -27,6 +28,8 @@ public class Bombastic {
         public static void onClientSetup(FMLClientSetupEvent event) {
 
             EntityRenderers.register(EntitiesRegistry.POWDER_BARREL.get(), PowderBarrelRenderer::new);
+            EntityRenderers.register(EntitiesRegistry.TNT_MINECART.get(), MinecartPowderBarrelRenderer::new);
+
         }
     }
 

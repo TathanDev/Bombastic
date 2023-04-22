@@ -1,6 +1,7 @@
 package fr.tathan.bombastic.blocks;
 
 import fr.tathan.bombastic.entity.PrimedPowderBarrel;
+import net.minecraft.client.renderer.entity.TntMinecartRenderer;
 import net.minecraft.core.BlockPos;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
@@ -37,25 +38,7 @@ public class PowderBarrel extends Block {
         this.registerDefaultState((BlockState)this.defaultBlockState().setValue(UNSTABLE, false));
     }
 
-    @Override
-    public void onPlace(BlockState state, Level level, BlockPos pos, BlockState oldState, boolean isMoving) {
-        if (!oldState.is(state.getBlock())) {
-            if (level.hasNeighborSignal(pos)) {
-                explode(level, pos);
-                level.removeBlock(pos, false);
-            }
 
-        }
-    }
-
-    @Override
-    public void neighborChanged(BlockState state, Level level, BlockPos pos, Block block, BlockPos fromPos, boolean isMoving) {
-        if (level.hasNeighborSignal(pos)) {
-            explode(level, pos);
-            level.removeBlock(pos, false);
-        }
-
-    }
 
     @Override
     public void playerWillDestroy(Level level, BlockPos pos, BlockState state, Player player) {
@@ -75,6 +58,7 @@ public class PowderBarrel extends Block {
             level.addFreshEntity(primedPowderBarrel);
         }
     }
+
 
 
     public static void explode(Level level, BlockPos pos) {

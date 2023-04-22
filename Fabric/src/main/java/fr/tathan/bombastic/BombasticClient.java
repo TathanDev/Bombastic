@@ -5,6 +5,7 @@ import fr.tathan.bombastic.entity.renderer.PowderBarrelRenderer;
 import fr.tathan.bombastic.registries.EntitiesRegistry;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.client.rendering.v1.EntityRendererRegistry;
+import net.minecraft.world.entity.EntityType;
 
 public class BombasticClient implements ClientModInitializer  {
 
@@ -14,6 +15,8 @@ public class BombasticClient implements ClientModInitializer  {
         EntityRendererRegistry.register(EntitiesRegistry.POWDER_BARREL.get(), PowderBarrelRenderer::new);
 
     }
+
+
 
 
 }
