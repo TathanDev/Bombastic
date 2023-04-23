@@ -12,14 +12,22 @@ import net.minecraft.core.dispenser.DispenseItemBehavior;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
+import net.minecraft.stats.Stats;
 import net.minecraft.tags.BlockTags;
+import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
+import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.MobSpawnType;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.entity.projectile.FishingHook;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.UseOnContext;
+import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.BaseRailBlock;
 import net.minecraft.world.level.block.DispenserBlock;
@@ -59,36 +67,35 @@ public class Activator extends Item {
         }
     }
 
-
     @Override
-    public boolean hurtEnemy(ItemStack stack, LivingEntity target, LivingEntity attacker) {
-
-
-
-        return true;
-    }
-
-    @Override
-    public void onUseTick(Level pLevel, LivingEntity pLivinEntity, ItemStack stack, int $$3) {
-
-
-
+    public InteractionResultHolder<ItemStack> use(Level pLevel, Player player, InteractionHand usedHand) {
+        ItemStack stack = player.getItemInHand(usedHand);
         CompoundTag coords = stack.getTagElement("coords");
 
-        BlockPos blockPos = new BlockPos(coords.getInt("x"), coords.getInt("y"), coords.getInt("z"));
-        BlockState blockState = pLevel.getBlockState(blockPos);
-        Constants.LOG.info(blockPos.toString());
-        Constants.LOG.info("x: " + coords.getInt("x") + " y: " + coords.getInt("y") + " z: " + coords.getInt("z"));
-
-
-
-        if(blockState.getBlock() instanceof Detonator detonator){
-            detonator.activate(blockState, pLevel, blockPos);
-            Constants.LOG.info("Activated");
+        if (coords == null) {
+            player.sendSystemMessage(Component.translatable("message.bombastic.no_coords"));
+            return InteractionResultHolder.fail(stack);
 
         }
-    }
 
+            BlockPos blockPos = new BlockPos(coords.getInt("x"), coords.getInt("y"), coords.getInt("z"));
+            BlockState blockState = pLevel.getBlockState(blockPos);
+            Constants.LOG.info(blockPos.toString());
+            Constants.LOG.info("x: " + coords.getInt("x") + " y: " + coords.getInt("y") + " z: " + coords.getInt("z"));
+
+
+            if (blockState.getBlock() instanceof Detonator detonator) {
+                detonator.activate(blockState, pLevel, blockPos);
+                Constants.LOG.info("Activated");
+                pLevel.playSound((Player) null, player.getX(), player.getY(), player.getZ(), SoundEvents.FISHING_BOBBER_RETRIEVE, SoundSource.NEUTRAL, 1.0F, 0.4F / (pLevel.getRandom().nextFloat() * 0.4F + 0.8F));
+
+                return InteractionResultHolder.success(stack);
+
+            }
+
+        return InteractionResultHolder.pass(stack);
+
+    }
 
 }
 

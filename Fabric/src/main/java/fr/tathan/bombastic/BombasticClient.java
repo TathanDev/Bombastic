@@ -6,6 +6,8 @@ import fr.tathan.bombastic.entity.renderer.PowderBarrelRenderer;
 import fr.tathan.bombastic.registries.EntitiesRegistry;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.client.rendering.v1.EntityRendererRegistry;
+import net.minecraft.world.item.FishingRodItem;
+import net.minecraft.world.level.block.TntBlock;
 
 public class BombasticClient implements ClientModInitializer  {
 

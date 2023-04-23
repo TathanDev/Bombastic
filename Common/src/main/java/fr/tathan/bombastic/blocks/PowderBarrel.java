@@ -1,6 +1,8 @@
 package fr.tathan.bombastic.blocks;
 
+import fr.tathan.bombastic.Constants;
 import fr.tathan.bombastic.entity.PrimedPowderBarrel;
+import fr.tathan.bombastic.registries.BlocksRegistry;
 import net.minecraft.client.renderer.entity.TntMinecartRenderer;
 import net.minecraft.core.BlockPos;
 import net.minecraft.sounds.SoundEvents;
@@ -123,6 +125,16 @@ public class PowderBarrel extends Block {
 
     static {
         UNSTABLE = BlockStateProperties.UNSTABLE;
+    }
+
+    @Override
+    public void neighborChanged(BlockState state, Level level, BlockPos pos, Block block, BlockPos fromPos, boolean isMoving) {
+        if (level.hasNeighborSignal(pos) && level.getBlockState(fromPos).is(BlocksRegistry.DETONATOR.get())) {
+            Constants.LOG.info("Update by " + level.getBlockState(fromPos).getBlock().getName().toString());
+            explode(level, pos);
+            level.removeBlock(pos, false);
+        }
+
     }
 
 }

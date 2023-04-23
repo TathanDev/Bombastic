@@ -1,6 +1,7 @@
 package fr.tathan.bombastic.entity;
 
 import fr.tathan.bombastic.registries.EntitiesRegistry;
+import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.protocol.Packet;
@@ -11,6 +12,9 @@ import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.level.Explosion;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.TntBlock;
+import net.minecraft.world.level.block.state.BlockState;
 import org.jetbrains.annotations.Nullable;
 
 public class PrimedPowderBarrel extends Entity {
@@ -85,8 +89,6 @@ public class PrimedPowderBarrel extends Entity {
         float f = 7.0F;
         this.level.explode(this, this.getX(), this.getY(0.0625D), this.getZ(), f, Explosion.BlockInteraction.BREAK);
     }
-
-
 
     @Override
     protected void addAdditionalSaveData(CompoundTag p_32097_) {
